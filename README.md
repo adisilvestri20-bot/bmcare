@@ -1,54 +1,32 @@
 # BMCARE Motorsport — Sitio web
 
-Sitio del taller BMCARE Motorsport (Los Trabajadores 4442, Recoleta, Santiago).
-Especialistas en vehículos de alta gama.
+Taller mecánico de alta gama en Los Trabajadores 4454, Huechuraba, Santiago.
 
-## Archivos
+## Páginas publicables (HTML estático, listo para SEO)
 
-| Archivo | Qué es |
-| --- | --- |
-| `index.html` | Sitio completo: portada con video, quiénes somos, especialidades, servicios, seguimiento, consejos, preguntas, contacto, panel del taller y chatbot |
-| `Portal del Cliente.dc.html` | Portal privado: login/registro, historial por vehículo, link público de reventa, PDF, fidelización y recordatorios |
-| `Selector de servicios.dc.html` | Cotizador visual por zonas del auto (opcional) |
-| `BMCARE Motorsport v1 (claro).dc.html` | Primera versión en tema claro (respaldo) |
-| `support.js` | Runtime necesario para las páginas `.dc.html` |
-| `image-slot.js` | Componente de foto arrastrable usado en las galerías |
-| `_ds/` | Sistema de diseño (tokens y estilos) |
-| `uploads/` | Video de portada, video de taller y logo |
+- `index.html` — Inicio
+- `nosotros.html` — Quiénes somos
+- `servicios.html` — Servicios
+- `preguntas-frecuentes.html` — Preguntas frecuentes y consejos
+- `contacto.html` — Contacto y ubicación
 
-## Publicar
+Archivos que usan: `assets/site.css`, `assets/site.js`, `_ds/` (tipografía y estilos base) y `uploads/` (logo, videos y logos de marcas). También se incluyen `robots.txt` y `sitemap.xml`.
 
-Es un sitio estático: sirve la carpeta tal cual.
+## Publicar en GitHub Pages
 
-**Vercel (recomendado):** importar el repositorio en vercel.com → Add New → Project. Sin build: Framework "Other".
+1. Sube al repositorio: las 5 páginas `.html`, `assets/`, `_ds/`, `uploads/`, `robots.txt`, `sitemap.xml` y el archivo `CNAME` con el texto `bmcare.cl`.
+2. Settings → Pages → Deploy from a branch → `main` / raíz.
+3. En tu proveedor de dominio apunta `bmcare.cl` a GitHub Pages.
+4. Registra el sitio en Google Search Console y envía `https://bmcare.cl/sitemap.xml`.
 
-**GitHub Pages:** Settings → Pages → Deploy from a branch → `main` / `root`.
+Los archivos `.dc.html`, `support.js`, `image-slot.js` y `screenshots/` son archivos de diseño y respaldos: **no los subas** al sitio publicado.
 
-**Local:**
+## Antes de publicar
 
-```bash
-python3 -m http.server 8080
-# abrir http://localhost:8080
-```
+- Completa los COMPLETAR de fidelización (número de mantención y % de descuento) en `index.html`.
+- Fotos del taller: en `nosotros.html` reemplaza cada marco "Foto del …" por un `<img>` con su `alt` (hay un comentario con el ejemplo).
+- Imagen para redes (`og:image`): hoy usa el logo. Lo ideal es una foto de 1200×630 px.
 
-Debe servirse por HTTP (no abriendo el archivo directamente) para que carguen los videos y el sistema de diseño.
+## Biela (asistente)
 
-## Datos a mantener
-
-- WhatsApp y teléfono: `+56 9 3036 9843`
-- Instagram: `@bmcare_`
-- Horario: lunes a viernes 08:00–18:00 · sábado 09:00–13:00
-- Clave del panel del taller: `2026` (cámbiala antes de publicar)
-- Cuenta demo del portal: `cliente@bmcare.cl` / `demo1234`
-
-## Notas técnicas
-
-- El seguimiento de vehículos, el portal y los recordatorios guardan datos en el
-  navegador (`localStorage`). Es un prototipo funcional: para producción hay que
-  conectar un backend con base de datos y contraseñas hasheadas.
-- Los avisos por WhatsApp se abren con enlaces `wa.me` prellenados; no hay envío
-  automático desde el servidor.
-- Chatbot: en Vercel responde con IA a través de `api/chat.js` si existe la variable
-  de entorno `ANTHROPIC_API_KEY` (Vercel → Settings → Environment Variables).
-  Sin la clave, responde con respuestas automáticas por tema y deriva a WhatsApp.
-- Vista móvil: menú hamburguesa bajo 900px, chat a pantalla completa en celular.
+Fuera de la vista previa no hay IA conectada: Biela responde con un mensaje que deriva al cliente a un ejecutivo por WhatsApp con el resumen de la conversación. Para respuestas con IA hay que conectar un servicio propio en `assets/site.js`.

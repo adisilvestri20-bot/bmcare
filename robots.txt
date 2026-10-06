@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /_ds/
+
+Sitemap: https://bmcare.cl/sitemap.xml
